@@ -21,7 +21,7 @@ const NavBar = () => {
     <div className="flex w-full justify-between items-center px-4 py-3 z-[100] absolute">
       <Link to="/">
         <h1 className="text-red-600 text-4xl font-bold cursor-pointer">
-          NETFLIX
+          MovieHub
         </h1>
       </Link>
 

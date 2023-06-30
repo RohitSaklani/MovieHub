@@ -12,14 +12,16 @@ const Row = ({ title, fetchUrl }) => {
     axios.get(fetchUrl).then((res) => setMovies(res.data.results));
   }, []);
 
-  const slideLeft = () => {
-    var slider = document.querySelector(".movie-slider");
+  const slideLeft = (title) => {
+    console.log(typeof title + "   " + title);
+    var slider = document.querySelector(".movie-slider" + title);
     console.log(slider);
     slider.scrollLeft = slider.scrollLeft - 500;
   };
 
-  const slideRight = () => {
-    var slider = document.querySelector(".movie-slider");
+  const slideRight = (title) => {
+    console.log(typeof title + "   " + title);
+    var slider = document.querySelector(".movie-slider" + title);
     console.log(slider);
     slider.scrollLeft = slider.scrollLeft + 500;
   };
@@ -30,18 +32,22 @@ const Row = ({ title, fetchUrl }) => {
 
       <div className=" flex  items-center  group  ">
         <MdChevronLeft
-          onClick={slideLeft}
+          onClick={() => slideLeft(title)}
           className=" text-black absolute bg-white rounded-full z-10 opacity-1 hover:opacity-30 hidden group-hover:block left-0 cursor-pointer"
           size={30}
         />
-        <div className="w-full h-full movie-slider overflow-x-scroll whitespace-nowrap scrollbar-hide scroll-smooth">
+        <div
+          className={`w-full h-full ${
+            "movie-slider" + title
+          } overflow-x-scroll whitespace-nowrap scrollbar-hide scroll-smooth`}
+        >
           {movies.map((item) => (
             <Movie key={item.id} item={item} />
           ))}
         </div>
 
         <MdChevronRight
-          onClick={slideRight}
+          onClick={() => slideRight(title)}
           className="text-black absolute bg-white rounded-full z-10 opacity-1 hover:opacity-30 hidden group-hover:block right-0 cursor-pointer"
           size={30}
         />
